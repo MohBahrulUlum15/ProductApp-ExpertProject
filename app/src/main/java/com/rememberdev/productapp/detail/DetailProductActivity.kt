@@ -3,12 +3,11 @@ package com.rememberdev.productapp.detail
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.rememberdev.productapp.R
 import com.rememberdev.productapp.core.domain.model.Product
-import com.rememberdev.productapp.core.ui.ViewModelFactory
 import com.rememberdev.productapp.databinding.ActivityDetailProductBinding
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class DetailProductActivity : AppCompatActivity() {
 
@@ -16,7 +15,7 @@ class DetailProductActivity : AppCompatActivity() {
         const val EXTRA_DATA = "extra_data"
     }
 
-    private lateinit var detailProductViewModel: DetailProductViewModel
+    private val detailProductViewModel: DetailProductViewModel by viewModel()
     private lateinit var binding: ActivityDetailProductBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,9 +24,6 @@ class DetailProductActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         setSupportActionBar(binding.toolbar)
-
-        val factory = ViewModelFactory.getInstance(this)
-        detailProductViewModel = ViewModelProvider(this, factory)[DetailProductViewModel::class.java]
 
         val detailProduct = intent.getParcelableExtra<Product>(EXTRA_DATA)
         showDetail(detailProduct)

@@ -11,7 +11,7 @@ import com.rememberdev.productapp.core.utils.DataMapper
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
-class ProductRepository private constructor(
+class ProductRepository(
     private val remoteDataSource: RemoteDataSource,
     private val localDataSource: LocalDataSource,
     private val appExecutors: AppExecutors
@@ -20,15 +20,6 @@ class ProductRepository private constructor(
     companion object {
         @Volatile
         private var instance: ProductRepository? = null
-
-        fun getInstance(
-            remoteData: RemoteDataSource,
-            localData: LocalDataSource,
-            appExecutors: AppExecutors
-        ): ProductRepository =
-            instance ?: synchronized(this) {
-                instance ?: ProductRepository(remoteData, localData, appExecutors)
-            }
     }
 
     override fun getAllProduct(): Flow<Resource<List<Product>>> =

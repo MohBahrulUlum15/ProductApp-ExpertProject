@@ -6,18 +6,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.rememberdev.productapp.R
 import com.rememberdev.productapp.core.data.Resource
 import com.rememberdev.productapp.core.ui.ProductAdapter
-import com.rememberdev.productapp.core.ui.ViewModelFactory
 import com.rememberdev.productapp.databinding.FragmentHomeBinding
 import com.rememberdev.productapp.detail.DetailProductActivity
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeFragment : Fragment() {
 
-    private lateinit var homeViewModel: HomeViewModel
+    private val homeViewModel: HomeViewModel by viewModel()
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
@@ -40,9 +39,6 @@ class HomeFragment : Fragment() {
                 intent.putExtra(DetailProductActivity.EXTRA_DATA, select)
                 startActivity(intent)
             }
-
-            val factory = ViewModelFactory.getInstance(requireActivity())
-            homeViewModel = ViewModelProvider(this, factory)[HomeViewModel::class.java]
 
             homeViewModel.product.observe(viewLifecycleOwner, {product ->
                 if (product != null){
