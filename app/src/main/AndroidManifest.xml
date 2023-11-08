@@ -16,7 +16,7 @@
         android:theme="@style/Theme.ProductApp"
         tools:targetApi="31">
         <activity
-            android:name=".detail.DetailProductActivity"
+            android:name=".presentation.detail.DetailProductActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

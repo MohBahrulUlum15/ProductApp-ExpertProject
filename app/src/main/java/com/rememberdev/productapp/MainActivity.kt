@@ -9,8 +9,8 @@ import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
 import com.google.android.material.navigation.NavigationView.OnNavigationItemSelectedListener
 import com.rememberdev.productapp.databinding.ActivityMainBinding
-import com.rememberdev.productapp.favorite.FavoriteFragment
-import com.rememberdev.productapp.home.HomeFragment
+import com.rememberdev.productapp.presentation.favorite.FavoriteFragment
+import com.rememberdev.productapp.presentation.home.HomeFragment
 
 class MainActivity : AppCompatActivity(), OnNavigationItemSelectedListener {
 
