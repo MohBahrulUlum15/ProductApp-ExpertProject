@@ -1,6 +1,5 @@
 package com.rememberdev.productapp.core.data
 
-import com.rememberdev.productapp.core.data.source.local.LocalDataSource
 import com.rememberdev.productapp.core.data.source.remote.RemoteDataSource
 import com.rememberdev.productapp.core.data.source.remote.network.ApiResponse
 import com.rememberdev.productapp.core.data.source.remote.response.ProductResponse
@@ -39,6 +38,13 @@ class ProductRepository(
                 localDataSource.insertProduct(productList)
             }
         }.asFlow()
+
+    override fun searchProducts(query: String): Flow<List<Product>> {
+        return localDataSource.searchProducts(query).map {
+            DataMapper.mapEntitiesToDomain(it)
+        }
+    }
+
 
     override fun getFavoriteProduct(): Flow<List<Product>> {
         return localDataSource.getFavoriteProduct().map { DataMapper.mapEntitiesToDomain(it) }

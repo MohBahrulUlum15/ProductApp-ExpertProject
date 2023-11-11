@@ -13,6 +13,8 @@ class LocalDataSource(private val productDao: ProductDao){
 
     fun getFavoriteProduct(): Flow<List<ProductEntity>> = productDao.getFavoriteProduct()
 
+    fun searchProducts(query : String) : Flow<List<ProductEntity>> = productDao.searchProducts(query)
+
     suspend fun insertProduct(productList: List<ProductEntity>) = productDao.insertProduct(productList)
 
     fun setFavoriteProduct(product: ProductEntity, newState: Boolean){

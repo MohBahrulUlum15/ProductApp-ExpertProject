@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ProductApp</string>
+    <string name="app_name">Product App</string>
 
     <string name="image_description">Image</string>
     <string name="text_primary">Sample of title text</string>
@@ -11,10 +11,22 @@
     <string name="menu_home">Home</string>
     <string name="menu_map">Maps</string>
     <string name="menu_favorite">Favorite</string>
+    <string name="menu_search">Search</string>
 
     <string name="title_activity_detail_home">DetailHomeActivity</string>
     <string name="no_data">Empty data</string>
     <string name="something_wrong">Oops.. something went wrong</string>
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_dynamicfavorite">DynamicFavorite</string>
+    <string name="brand_of_product">Brand of Product</string>
+    <string name="category">Category</string>
+
+    <string name="my_name">Moh. Bahrul \'Ulum</string>
+    <string name="my_email">belajarkoding97@gmail.com</string>
+    <string name="my_address">Jl. Raya Mangaran 01/04, Desa Mangaran, Kecamatan Mangaran, Kabupaten Situbondo, Jawa timur.</string>
+    <string name="my_instagram">\@ulumbahrul_15</string>
+    <string name="my_linkedin">Moh. Bahrul \'Ulum</string>
+    <string name="my_github">MohBahrulUlum15</string>
+    <string name="menu_info">Info</string>
 </resources>

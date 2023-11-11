@@ -17,6 +17,9 @@ interface ProductDao {
     @Query("SELECT * FROM product WHERE isFavorite = 1")
     fun getFavoriteProduct(): Flow<List<ProductEntity>>
 
+    @Query("SELECT * FROM product WHERE title LIKE '%' ||:like || '%'")
+    fun searchProducts(like : String) : Flow<List<ProductEntity>>
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertProduct(product: List<ProductEntity>)
 
