@@ -8,6 +8,8 @@ import com.rememberdev.productapp.core.data.source.remote.RemoteDataSource
 import com.rememberdev.productapp.core.data.source.remote.network.ApiService
 import com.rememberdev.productapp.core.domain.repository.IProductRepository
 import com.rememberdev.productapp.core.utils.AppExecutors
+import net.sqlcipher.database.SQLiteDatabase
+import net.sqlcipher.database.SupportFactory
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.android.BuildConfig
@@ -20,11 +22,14 @@ import java.util.concurrent.TimeUnit
 val databaseModule = module {
     factory { get<ProductDatabase>().productDao() }
     single {
+        val passphrase: ByteArray = SQLiteDatabase.getBytes("rememberdev".toCharArray())
+        val factory = SupportFactory(passphrase)
         Room.databaseBuilder(
             androidContext(),
             ProductDatabase::class.java,
             "Product.db"
         ).fallbackToDestructiveMigration()
+            .openHelperFactory(factory)
             .build()
     }
 }
