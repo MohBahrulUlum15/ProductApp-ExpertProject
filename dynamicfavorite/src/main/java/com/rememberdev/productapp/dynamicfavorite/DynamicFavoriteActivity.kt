@@ -26,7 +26,7 @@ class DynamicFavoriteActivity : AppCompatActivity() {
         loadKoinModules(dynamicFavoriteModule)
 
         setSupportActionBar(binding.toolbar)
-        supportActionBar?.title = "Favorite Product"
+        supportActionBar?.title = getString(R.string.favorite_product)
 
         getProductData()
     }
