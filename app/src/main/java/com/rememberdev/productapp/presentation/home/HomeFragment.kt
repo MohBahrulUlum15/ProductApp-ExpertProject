@@ -24,7 +24,7 @@ class HomeFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -43,12 +43,12 @@ class HomeFragment : Fragment() {
             homeViewModel.product.observe(viewLifecycleOwner, {product ->
                 if (product != null){
                     when(product){
-                        is com.rememberdev.productapp.core.data.Resource.Loading -> binding.progressBar.visibility = View.VISIBLE
-                        is com.rememberdev.productapp.core.data.Resource.Success -> {
+                        is Resource.Loading -> binding.progressBar.visibility = View.VISIBLE
+                        is Resource.Success -> {
                             binding.progressBar.visibility = View.GONE
                             productAdapter.setData(product.data)
                         }
-                        is com.rememberdev.productapp.core.data.Resource.Error -> {
+                        is Resource.Error -> {
                             binding.progressBar.visibility = View.GONE
                             binding.viewError.root.visibility = View.VISIBLE
                             binding.viewError.tvError.text = product.message ?: getString(R.string.something_wrong)

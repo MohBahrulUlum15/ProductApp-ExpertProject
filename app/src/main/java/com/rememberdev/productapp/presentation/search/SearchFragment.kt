@@ -23,7 +23,7 @@ class SearchFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         _binding = FragmentSearchBinding.inflate(inflater, container, false)
         setHasOptionsMenu(true)
@@ -61,44 +61,6 @@ class SearchFragment : Fragment() {
                     return true
                 }
             })
-
-//            binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-//                override fun onQueryTextSubmit(query: String?): Boolean {
-//                    searchViewModel.searchProducts(query.toString())
-//                        .observe(viewLifecycleOwner) { result ->
-//                            if (result.isNotEmpty()) {
-//                                binding.tvErrorMessage.visibility = View.GONE
-//                                binding.rvProduct.visibility = View.VISIBLE
-//                                productAdapter.setData(result)
-//                            } else {
-//                                binding.tvErrorMessage.visibility = View.VISIBLE
-//                                binding.rvProduct.visibility = View.GONE
-//                            }
-//                        }
-//                    return false
-//                }
-//
-//                override fun onQueryTextChange(newText: String?): Boolean {
-//                    return false
-//                }
-//            })
-//
-//            homeViewModel.product.observe(viewLifecycleOwner, {product ->
-//                if (product != null){
-//                    when(product){
-//                        is com.rememberdev.productapp.core.data.Resource.Loading -> binding.progressBar.visibility = View.VISIBLE
-//                        is com.rememberdev.productapp.core.data.Resource.Success -> {
-//                            binding.progressBar.visibility = View.GONE
-//                            productAdapter.setData(product.data)
-//                        }
-//                        is com.rememberdev.productapp.core.data.Resource.Error -> {
-//                            binding.progressBar.visibility = View.GONE
-//                            binding.viewError.root.visibility = View.VISIBLE
-//                            binding.viewError.tvError.text = product.message ?: getString(R.string.something_wrong)
-//                        }
-//                    }
-//                }
-//            })
 
             with(binding.rvProduct) {
                 layoutManager = LinearLayoutManager(context)

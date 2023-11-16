@@ -1,5 +1,6 @@
 package com.rememberdev.productapp.presentation.detail
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -10,10 +11,6 @@ import com.rememberdev.productapp.databinding.ActivityDetailProductBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class DetailProductActivity : AppCompatActivity() {
-
-    companion object {
-        const val EXTRA_DATA = "extra_data"
-    }
 
     private val detailProductViewModel: DetailProductViewModel by viewModel()
     private lateinit var binding: ActivityDetailProductBinding
@@ -30,6 +27,7 @@ class DetailProductActivity : AppCompatActivity() {
         showDetail(detailProduct)
     }
 
+    @SuppressLint("SetTextI18n")
     private fun showDetail(detailProduct: Product?) {
         detailProduct?.let {
             supportActionBar?.title = detailProduct.title
@@ -38,8 +36,8 @@ class DetailProductActivity : AppCompatActivity() {
                 .into(binding.imageView)
 
             binding.content.tvDetailDescription.text = detailProduct.description
-            binding.content.tvPrice.text = "${detailProduct.price.toString()} $"
-            binding.content.tvDiscount.text = "${detailProduct.discountPercentage.toString()} %"
+            binding.content.tvPrice.text = detailProduct.price.toString()
+            binding.content.tvDiscount.text = "${detailProduct.discountPercentage} %"
             binding.content.tvRating.text = detailProduct.rating.toString()
             binding.content.tvStock.text = detailProduct.stock.toString()
             binding.content.tvBrand.text = detailProduct.brand
@@ -71,5 +69,9 @@ class DetailProductActivity : AppCompatActivity() {
                 )
             )
         }
+    }
+
+    companion object {
+        const val EXTRA_DATA = "extra_data"
     }
 }

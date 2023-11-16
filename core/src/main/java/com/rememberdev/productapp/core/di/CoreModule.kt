@@ -10,6 +10,7 @@ import com.rememberdev.productapp.core.domain.repository.IProductRepository
 import com.rememberdev.productapp.core.utils.AppExecutors
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import org.koin.android.BuildConfig
 import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module
 import retrofit2.Retrofit
@@ -30,8 +31,13 @@ val databaseModule = module {
 
 val networkModule = module {
     single {
+        val loggingInterceptor = if (BuildConfig.DEBUG) {
+            HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
+        } else {
+            HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.NONE)
+        }
         OkHttpClient.Builder()
-            .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
+            .addInterceptor(loggingInterceptor)
             .connectTimeout(120, TimeUnit.SECONDS)
             .readTimeout(120, TimeUnit.SECONDS)
             .build()
@@ -47,11 +53,11 @@ val networkModule = module {
 }
 
 val repositoryModule = module {
-    single { com.rememberdev.productapp.core.data.source.local.LocalDataSource(get()) }
+    single { LocalDataSource(get()) }
     single { RemoteDataSource(get()) }
     factory { AppExecutors() }
     single<IProductRepository> {
-        com.rememberdev.productapp.core.data.ProductRepository(
+        ProductRepository(
             get(),
             get(),
             get()

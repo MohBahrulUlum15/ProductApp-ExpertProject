@@ -65,8 +65,8 @@
            android:layout_margin="@dimen/text_margin"
            android:text="@string/text_subtitle"
            android:lineSpacingMultiplier="1.25"
-           android:drawableStart="@drawable/ic_price_24"
-           android:drawablePadding="@dimen/text_margin"/>
+           android:drawablePadding="@dimen/text_margin"
+           app:drawableStartCompat="@drawable/ic_price_24" />
 
        <TextView
            android:id="@+id/tv_discount"
@@ -75,8 +75,8 @@
            android:layout_margin="@dimen/text_margin"
            android:text="@string/text_subtitle"
            android:lineSpacingMultiplier="1.25"
-           android:drawableStart="@drawable/ic_discount_24"
-           android:drawablePadding="@dimen/text_margin"/>
+           android:drawablePadding="@dimen/text_margin"
+           app:drawableStartCompat="@drawable/ic_discount_24" />
 
        <TextView
            android:id="@+id/tv_rating"
@@ -85,8 +85,8 @@
            android:layout_margin="@dimen/text_margin"
            android:text="@string/text_subtitle"
            android:lineSpacingMultiplier="1.25"
-           android:drawableStart="@drawable/ic_star_24"
-           android:drawablePadding="@dimen/text_margin"/>
+           android:drawablePadding="@dimen/text_margin"
+           app:drawableStartCompat="@drawable/ic_star_24" />
 
        <TextView
            android:id="@+id/tv_stock"
@@ -95,8 +95,8 @@
            android:layout_margin="@dimen/text_margin"
            android:text="@string/text_subtitle"
            android:lineSpacingMultiplier="1.25"
-           android:drawableStart="@drawable/ic_stock_24"
-           android:drawablePadding="@dimen/text_margin"/>
+           android:drawablePadding="@dimen/text_margin"
+           app:drawableStartCompat="@drawable/ic_stock_24" />
 
    </LinearLayout>
 

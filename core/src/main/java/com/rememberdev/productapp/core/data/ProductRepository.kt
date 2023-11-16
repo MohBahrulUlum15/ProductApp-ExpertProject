@@ -16,13 +16,8 @@ class ProductRepository(
     private val appExecutors: AppExecutors
 ) : IProductRepository {
 
-    companion object {
-        @Volatile
-        private var instance: com.rememberdev.productapp.core.data.ProductRepository? = null
-    }
-
-    override fun getAllProduct(): Flow<com.rememberdev.productapp.core.data.Resource<List<Product>>> =
-        object : com.rememberdev.productapp.core.data.NetworkBoundResource<List<Product>, List<ProductResponse>>() {
+    override fun getAllProduct(): Flow<Resource<List<Product>>> =
+        object : NetworkBoundResource<List<Product>, List<ProductResponse>>() {
             override fun loadFromDB(): Flow<List<Product>> {
                 return localDataSource.getAllProduct().map { DataMapper.mapEntitiesToDomain(it) }
             }
@@ -53,5 +48,10 @@ class ProductRepository(
     override fun setFavoriteProduct(product: Product, state: Boolean) {
         val productEntity = DataMapper.mapDomainToEntity(product)
         appExecutors.diskIO().execute { localDataSource.setFavoriteProduct(productEntity, state) }
+    }
+
+    companion object {
+        @Volatile
+        private var instance: ProductRepository? = null
     }
 }
