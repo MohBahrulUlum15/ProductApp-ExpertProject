@@ -1,6 +1,9 @@
 package com.rememberdev.productapp
 
+import android.content.BroadcastReceiver
+import android.content.Context
 import android.content.Intent
+import android.content.IntentFilter
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -18,6 +21,7 @@ import com.rememberdev.productapp.presentation.search.SearchFragment
 class MainActivity : AppCompatActivity(), OnNavigationItemSelectedListener {
 
     private lateinit var binding: ActivityMainBinding
+    private lateinit var broadcastReceiver: BroadcastReceiver
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -102,5 +106,37 @@ class MainActivity : AppCompatActivity(), OnNavigationItemSelectedListener {
             }
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    private fun registerBroadcastReceiver(){
+        broadcastReceiver = object : BroadcastReceiver(){
+            override fun onReceive(context: Context, intent: Intent) {
+                when(intent.action){
+                    Intent.ACTION_POWER_CONNECTED -> {
+                        Toast.makeText(this@MainActivity, getString(R.string.power_connected), Toast.LENGTH_SHORT).show()
+                    }
+                    Intent.ACTION_POWER_DISCONNECTED -> {
+                        Toast.makeText(this@MainActivity, getString(R.string.power_disconnected), Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
+        }
+
+        val intentFilter = IntentFilter()
+        intentFilter.apply {
+            addAction(Intent.ACTION_POWER_CONNECTED)
+            addAction(Intent.ACTION_POWER_DISCONNECTED)
+        }
+        registerReceiver(broadcastReceiver, intentFilter)
+    }
+
+    override fun onStart() {
+        super.onStart()
+        registerBroadcastReceiver()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        unregisterReceiver(broadcastReceiver)
     }
 }

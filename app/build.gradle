@@ -47,4 +47,6 @@ dependencies {
     implementation project(":core")
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "androidx.core:core-ktx:$core_ktx_version"
+
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.10'
 }

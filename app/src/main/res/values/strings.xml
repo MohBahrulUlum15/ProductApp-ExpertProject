@@ -27,4 +27,7 @@
     <string name="my_linkedin">Moh. Bahrul \'Ulum</string>
     <string name="my_github">MohBahrulUlum15</string>
     <string name="menu_info">Info</string>
+
+    <string name="power_connected">Power connected!</string>
+    <string name="power_disconnected">Power disconnected!</string>
 </resources>
