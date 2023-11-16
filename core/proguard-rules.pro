@@ -19,3 +19,9 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+-keep class kotlin.** { *; }
+-dontwarn com.google.errorprone.**
+-dontwarn com.google.errorpeone.annotations.**
+-dontwarn androidx.test.platform.**
+-keep class androidx.test.** { *; }
+-ignorewarnings
