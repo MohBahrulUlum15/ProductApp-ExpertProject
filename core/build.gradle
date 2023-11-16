@@ -43,6 +43,7 @@ dependencies {
     implementation fileTree(dir: "libs", includes: ["*.jar"])
     //room
     implementation "androidx.room:room-runtime:$room_version"
+    implementation 'androidx.core:core-ktx:+'
     kapt "androidx.room:room-compiler:$room_version"
     androidTestImplementation "androidx.room:room-testing:$room_version"
 
