@@ -1,5 +1,6 @@
 package com.rememberdev.productapp.core.ui
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,6 +15,7 @@ class ProductAdapter : RecyclerView.Adapter<ProductAdapter.ListViewHolder>() {
     private var listData = ArrayList<Product>()
     var onItemClick: ((Product) -> Unit)? = null
 
+    @SuppressLint("NotifyDataSetChanged")
     fun setData(newListData: List<Product>?) {
         if (newListData == null) return
         listData.clear()

@@ -13,6 +13,7 @@ import com.rememberdev.productapp.databinding.FragmentSearchBinding
 import com.rememberdev.productapp.presentation.detail.DetailProductActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
+@Suppress("DEPRECATION")
 class SearchFragment : Fragment() {
 
     private val searchViewModel: SearchViewModel by viewModel()
