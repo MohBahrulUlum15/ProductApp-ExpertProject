@@ -11,8 +11,8 @@
 #-keep class com.google.gson.stream.** { *; }
 
 # Application classes that will be serialized/deserialized over Gson
--keep class elok.dicoding.made.core.data.source.remote.response.ListMovieTvResponse { <fields>; }
--keep class elok.dicoding.made.core.data.source.remote.response.MovieTvResponse { <fields>; }
+-keep class com.rememberdev.productapp.core.data.source.remote.response.ListProductResponse { <fields>; }
+-keep class com.rememberdev.productapp.core.data.source.remote.response.ProductResponse { <fields>; }
 
 # Prevent proguard from stripping interface information from TypeAdapter, TypeAdapterFactory,
 # JsonSerializer, JsonDeserializer instances (so they can be used in @JsonAdapter)
